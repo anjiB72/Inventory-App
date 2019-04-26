@@ -14,11 +14,50 @@
 //jquery document ready
 $(document).ready(function(){
 
+//MAIN PAGE SELECTION
+	//
+	$('.small-container').on('mouseenter', function(){
+		$(this).css("background-color", "rgba(8, 103, 136, 1)");
+	});
+	
+	$('.small-container').on('mouseleave', function(){
+		$(this).css("background-color", "rgba(66, 75, 84, 1)");	
+	});
+
+	//select Add new product
+	$('#addNewProd').click(function(){
+	
+		//display form to add new product
+		$('.main-container, #add').removeClass('displayNone');
+		$('#home').addClass('displayNone');
+	});
+	
+
+	//select update existing product
+	$('#updateProduct').click(function(){
+
+		//display form to update product
+		$('.main-container, #update').removeClass('displayNone');
+		$('#home').addClass('displayNone');
+	});
+
+	//select to view inventory
+	$('#viewInventory').click(function(){
+
+		//display form to update product
+		$('.main-container, #inventory-list').removeClass('displayNone');
+		$('#home').addClass('displayNone');
+	});
+
+
+//ADD NEW PRODUCT
 	//Sets size boxes to display depending on which product category is selected
 	$('#prodCat').change(function(){
 
+		//set product category value to a variable
 		var productCat = $('#prodCat').val();
 
+		//if else conditions to display size inputs dependent on product category
 		if (productCat === "socks") {
 			$('#sockSizes').removeClass("displayNone");
 			$('#topSizes , #kidSizes').addClass('displayNone');
@@ -62,7 +101,7 @@ $(document).ready(function(){
 		//create a section for products in database
 		var productDetails = database.ref('products');
 
-  		// use the set method to save data to the products
+  		// use the set method to save data to products
   		productDetails.push({
   			productCategory: prodCat,
     		productId: prodId,

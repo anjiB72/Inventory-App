@@ -2,82 +2,112 @@
 <html>
 <head>
 	<title>Simple Inventory Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="./resources/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="./resources/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
 </head>
 <body>
 
 <header>
-	<h1>My Simple Inventory</h1>
+	<div class="header-container" >
+		<div id="logo">
+			<img src="./resources/images/storageLogo.png">
+		</div>
+		<div id="headerText">
+			<h1>My Inventory App</h1>
+			<p>A simple inventory solution for small businesses</p>
+		</div>
+	</div>
+	<div class="home-logo">
+		<a href="index.html"><img src="./resources/images/home-icon.png"></a>	
+	</div>
 </header>
-<div class="body-container">
-	<h1>Add and update products to your inventory</h1>
-	<div class="main-container">
-		<div class="addItems" id="add">
-			<h2>Add a new item</h2>
+
+<div class="main-page" id="home">
+	<div class="small-container" id="addNewProd">
+		<h1>Add a new product</h1>
+	</div>
+	<div class="small-container" id="updateProduct">
+		<h1>Update an existing product</h1>
+	</div>
+	<div class="small-container" id="viewInventory">
+		<h1>View your inventory</h1>
+	</div>
+</div>
+
+	<div class="main-container displayNone">
+		<div class="addItems displayNone" id="add">
+			<h2>ADD A NEW PRODUCT</h2>
 			<form id="add-product" class="prodform">
-				<p>Product Category: <select id="prodCat" name="product-category">
+				<p><span>Product Category:</span> <select id="prodCat" name="product-category">
 					  <option value="tops">Tops</option>
 					  <option value="socks">Socks</option>
 					  <option value="kids">Kids</option>
 					  <option value="accessories">Accessories</option>
 				</select></p>
-				<p>Product id:<input id="prodId" type="text" name="product-id"></p>
-				<p>Product Name: <input id="prodName" type="text" name="product-name"></p>
-				<p>Product Description:</p> 
+				<p><span>Product id:</span><input id="prodId" type="text" name="product-id"></p>
+				<p><span>Product Name:</span><input id="prodName" type="text" name="product-name"></p>
+				<p><span>Product Description: </span> 
 				<textarea id="description" name="prod-desc" rows="5" cols="20"></textarea></p>
 				<div id="topSizes">
-					<p>Number of small: <input id="small" type="number" name="small-vol"></p>
-					<p>Number of medium: <input id="medium" type="number" name="med-vol"></p>
-					<p>Number of large: <input id="large" type="number" name="lge-vol"></p>
-					<p>Number of Xlarge: <input id="xLarge" type="number" name="xlge-vol"></p>
+					<p><span>Number of size small:</span> <input id="small" type="number" name="small-vol"></p>
+					<p><span>Number of size medium:</span> <input id="medium" type="number" name="med-vol"></p>
+					<p><span>Number of size large:</span> <input id="large" type="number" name="lge-vol"></p>
+					<p><span>Number of size Xlarge:</span> <input id="xLarge" type="number" name="xlge-vol"></p>
 				</div>
 				<div class="displayNone" id="sockSizes">
-					<p>Number of 3.5-7: <input id="smallSock" type="number" name="smallSock-vol"></p>
-					<p>Number of 8-11: <input id="mediumSock" type="number" name="medSock-vol"></p>
-				</div>
+					<p><span>Number of shoe size 3.5 - 7:</span> <input id="smallSock" type="number" name="smallSock-vol"></p>
+					<p><span>Number of shoe size 8 - 11: </span><input id="mediumSock" type="number" name="medSock-vol"></p>
+				</div> 
 				<div class="displayNone" id="kidSizes">
-					<p>Number of age 4 - 6: <input id="smallKid" type="number" name="smallkid-vol"></p>
-					<p>Number of age 7 - 9: <input id="mediumKid" type="number" name="medkid-vol"></p>
-					<p>Number of age 10 - 13:<input id="largeKid" type="number" name="lgekid-vol"></p>
+					<p><span>Number of age 4 - 6:</span> <input id="smallKid" type="number" name="smallkid-vol"></p>
+					<p><span>Number of age 7 - 9: </span><input id="mediumKid" type="number" name="medkid-vol"></p>
+					<p><span>Number of age 10 - 13: </span><input id="largeKid" type="number" name="lgekid-vol"></p>
 				</div>
-				<p>Price: £<input id="price" type="text" name="price"></p>
-				<p><input type="submit" name="submit"></p>
+				<p><span>Price: £ </span><input id="price" type="text" name="price"></p>
+				<div class="button"><input type="submit" name="submit"></div>
 			</form>
 		</div>
-		<div class="updateItem" id="update">
+
+		<div class="updateItem displayNone" id="update">
 			<h2>Update existing product</h2>
 			<form id="update-product" class="search">
 				<p>Enter product id: <input type="text" name="search-id"></p>
 				<p><input type="submit" name="search"></p>
 			</form>
+
+
+		</div>
+		<div class="container displayNone" id="inventory-list">
+		<h1>List of Inventory Items</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>Product Category</th>
+						<th>Product Id</th>
+						<th>Product Name</th>
+						<th>Small</th>
+						<th>Medium</th>
+						<th>Large</th>
+						<th>XLarge</th>
+						<th>3.5-7</th>
+						<th>8-11</th>
+						<th>Age 4-6</th>
+						<th>Age 7-9</th>
+						<th>Age 10-13</th>				
+						<th>Price</th>
+					</tr>
+				</thead>
+			</table>
 		</div>
 	</div>
 
-	<div class="container" id="inventory-list">
-		<h1>List of Inventory Items</h1>
-		<table>
-			<thead>
-				<tr>
-					<th>Product Category</th>
-					<th>Product Id</th>
-					<th>Product Name</th>
-					<th>Small</th>
-					<th>Medium</th>
-					<th>Large</th>
-					<th>XLarge</th>
-					<th>3.5-7</th>
-					<th>8-11</th>
-					<th>Age 4-6</th>
-					<th>Age 7-9</th>
-					<th>Age 10-13</th>				
-					<th>Price</th>
-				</tr>
-			</thead>
-		</table>
+	<footer>
+		<div>&copy; Angela Boakes, Web Designer.  All rights reserved.</div>
+	</footer>
 
-	</div>
-
-</div>
 <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.0.js"
   integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="

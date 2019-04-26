@@ -1,59 +1,192 @@
+/*Main document styling*/
 html{
 	font-size: 16px;
 }
 body{
+	font-family: 'Varela Round', sans-serif;
 	margin: 0;
 	padding: 0;
 }
 
+h1{
+	font-size: 2rem;
+	font-weight: 700;
+}
+
+h2{
+	font-size: 1.75rem;
+	font-weight: 600;
+}
+
+h3{
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+
+/*Fixed header styling*/
 header{
 	position: fixed;
 	top: 0;
-	height: 5rem;
 	width: 100%;
-	background-color: grey;
-	z-index: 1;
-}
+	height: 15vh;
+	background-color: rgba(8, 103, 136, 1);
+	z-index: 2;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	}
 
-header h1{
-	margin: auto 0;
-	color: white;
+.header-container{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	margin: 0 2rem;
 }
+	#logo{
+		height: 15vh;
+		margin-right: 3rem;
+	}
+		#logo img{
+			height: 12vh;
+			margin: 1.5vh 0;
+		}
 
-h1{
-	text-align: center;
-}
+	#headerText>h1{
+		color: rgba(242, 245, 234, 1);
+		margin: auto 0;
+		align-self: center;
+	}
 
-.body-container{
-	margin-top: 5rem;
-	padding-top: 1rem;
-}
+	#headerText>p{
+		color: rgba(242, 245, 234, 1);
+		line-height: 2;
+		font-weight: bold;
+	}
 
-.main-container{
+	.home-logo img{
+		height: 12vh;
+		margin: 1.5vh 2rem;
+	}
+
+/*Main entry page styling*/
+.main-page{
+	background-color: rgba(249, 200, 14, 1);
+	margin: 15vh 0 0 0;
+	height: 80vh;
+	width: 100vw;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	align-content: center;
+	}
+
+	.small-container{
+		background-color: rgb(66, 75, 84);
+		border-radius: 50px;
+		margin: auto;
+		height: 35vh;
+		width: 20%;
+		padding: 3rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.small-container h1{
+		margin: auto 0;
+		color: rgba(242, 245, 234, 1);
+		align-self: center;
+	}
+
+
+
+.main-container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: space-around;
+	margin-top: 15vh;
+	padding-top: 1rem;
+	min-height: 85vh;
+	background-color: rgba(249, 200, 14, 1);
+}
+	h2{
+		text-align: center;
+		padding-bottom: 1rem;
+	}
+
+	form{
+		border-radius: 15px;
+		padding: 2rem 0;
+		margin: 0 auto 2rem auto;
+		width: 60%;
+		height: auto;
+		background-color: rgba(66, 75, 84, 1);
+	}
+
+	.prodform p{
+		margin: auto;
+		width: 50%;
+		padding: 0 0 0.5rem 1rem;
+		}
+
+	.prodform span{
+		color: rgba(242, 245, 234, 1);
+		width: 20%;
+		padding-right: 3rem;
+	}
+
+	input,
+	textarea,
+	select {
+		padding: 0.25rem 0;
+		width: 80%;
+		margin-bottom: 0.25rem;
+	}
+
+	.button{
+		margin: 0.5rem auto;
+		padding: 0.5rem;
+		width: 25%;
+		text-align: center;
+	}
+
+		.button input{
+			background-color: rgba(8, 103, 136, 1);
+			color: rgba(242, 245, 234, 1);
+			border-radius: 4px;
+		}
+
+	.container{
+		width: 100%;
+	}
+
+	table{
+		margin: auto;
+		width: 80%;
+		border: 0.5px solid black;
+	}
+
+footer{
+	height: 8vh;
+	width: 100%;
+	background-color: rgba(8, 103, 136, 1);
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 }
 
-
-
-form{
-	border: 0.5px solid black;
-	padding: 1rem;
+footer div{
+	color: rgba(242, 245, 234, 1);
+	margin: auto 2rem;
+	align-self: center;
 }
 
+/*style classes for javascript*/
 .displayNone {
 	display: none;
 }
 
-.container{
-	width: 100%;
-	padding: 2rem;
-}
-
-table{
-	margin: auto;
-	width: 80%;
-	border: 0.5px solid black;
+.hover{
+	
 }
