@@ -1,0 +1,59 @@
+html{
+	font-size: 16px;
+}
+body{
+	margin: 0;
+	padding: 0;
+}
+
+header{
+	position: fixed;
+	top: 0;
+	height: 5rem;
+	width: 100%;
+	background-color: grey;
+	z-index: 1;
+}
+
+header h1{
+	margin: auto 0;
+	color: white;
+}
+
+h1{
+	text-align: center;
+}
+
+.body-container{
+	margin-top: 5rem;
+	padding-top: 1rem;
+}
+
+.main-container{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-content: center;
+}
+
+
+
+form{
+	border: 0.5px solid black;
+	padding: 1rem;
+}
+
+.displayNone {
+	display: none;
+}
+
+.container{
+	width: 100%;
+	padding: 2rem;
+}
+
+table{
+	margin: auto;
+	width: 80%;
+	border: 0.5px solid black;
+}

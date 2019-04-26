@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Inventory Page</title>
+	<link rel="stylesheet" type="text/css" href="./resources/css/style.css">
+</head>
+<body>
+
+<header>
+	<h1>My Simple Inventory</h1>
+</header>
+<div class="body-container">
+	<h1>Add and update products to your inventory</h1>
+	<div class="main-container">
+		<div class="addItems" id="add">
+			<h2>Add a new item</h2>
+			<form id="add-product" class="prodform">
+				<p>Product Category: <select id="prodCat" name="product-category">
+					  <option value="tops">Tops</option>
+					  <option value="socks">Socks</option>
+					  <option value="kids">Kids</option>
+					  <option value="accessories">Accessories</option>
+				</select></p>
+				<p>Product id:<input id="prodId" type="text" name="product-id"></p>
+				<p>Product Name: <input id="prodName" type="text" name="product-name"></p>
+				<p>Product Description:</p> 
+				<textarea id="description" name="prod-desc" rows="5" cols="20"></textarea></p>
+				<div id="topSizes">
+					<p>Number of small: <input id="small" type="number" name="small-vol"></p>
+					<p>Number of medium: <input id="medium" type="number" name="med-vol"></p>
+					<p>Number of large: <input id="large" type="number" name="lge-vol"></p>
+					<p>Number of Xlarge: <input id="xLarge" type="number" name="xlge-vol"></p>
+				</div>
+				<div class="displayNone" id="sockSizes">
+					<p>Number of 3.5-7: <input id="smallSock" type="number" name="smallSock-vol"></p>
+					<p>Number of 8-11: <input id="mediumSock" type="number" name="medSock-vol"></p>
+				</div>
+				<div class="displayNone" id="kidSizes">
+					<p>Number of age 4 - 6: <input id="smallKid" type="number" name="smallkid-vol"></p>
+					<p>Number of age 7 - 9: <input id="mediumKid" type="number" name="medkid-vol"></p>
+					<p>Number of age 10 - 13:<input id="largeKid" type="number" name="lgekid-vol"></p>
+				</div>
+				<p>Price: £<input id="price" type="text" name="price"></p>
+				<p><input type="submit" name="submit"></p>
+			</form>
+		</div>
+		<div class="updateItem" id="update">
+			<h2>Update existing product</h2>
+			<form id="update-product" class="search">
+				<p>Enter product id: <input type="text" name="search-id"></p>
+				<p><input type="submit" name="search"></p>
+			</form>
+		</div>
+	</div>
+
+	<div class="container" id="inventory-list">
+		<h1>List of Inventory Items</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Product Category</th>
+					<th>Product Id</th>
+					<th>Product Name</th>
+					<th>Small</th>
+					<th>Medium</th>
+					<th>Large</th>
+					<th>XLarge</th>
+					<th>3.5-7</th>
+					<th>8-11</th>
+					<th>Age 4-6</th>
+					<th>Age 7-9</th>
+					<th>Age 10-13</th>				
+					<th>Price</th>
+				</tr>
+			</thead>
+		</table>
+
+	</div>
+
+</div>
+<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.0.js"
+  integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+  crossorigin="anonymous"></script>
+<script src="./resources/js/main.js" type="text/javascript"></script>
+</body>
+</html>
