@@ -25,12 +25,13 @@ function getProducts(){
 		//stores all the result values in a variable called allProducts
 		var allProducts = results.val();
 		
+		
 		//set an empty array called inventory
 		var inventory = [];
 
 		//loops through all items in the allProducts variable
 		for (var item in allProducts){
-
+			
 			var context = {
 		        productCategory: allProducts[item].productCategory,
 		        productID: allProducts[item].productId,
@@ -46,19 +47,20 @@ function getProducts(){
 		        volumeLargeKid: allProducts[item].volumeLargeKid,
 		        productPrice: allProducts[item].productPrice,
 		        itemId: item
-	      	};
+		      };
 
 	      var source = $("#entry-template").html();
 	      var template = Handlebars.compile(source);
 	      var inventoryItem = template(context);
 	      inventory.push(inventoryItem);
-	  	};
+	    };
 
     	// append each item to the inventory table in the DOM
 	    for (var i in inventory) {
 	      $('#inventory-table').append(inventory[i]);
 	    };
 	}); //End of database.ref('products') once results function
+
 }; //End of getProducts Function
 
 //jquery document ready
@@ -184,5 +186,34 @@ $(document).ready(function(){
   		}); // product details.push method end brackets
 	});	//add product submit function end brackets	
 
+	//Click event to delete a product from database and from 
+	$('#inventory-table').on('click', '.delete', function (e) {
+
+	  // Get the ID for the product we want to update
+	  var id = $(e.target).parents('tr').attr('data-id');
+
+	  //removes row from table
+	  $(e.target).parents('tr').remove();
+
+	  //console.log(id);
+
+	  // find product whose objectId is equal to the id we're searching with
+	  var productReference = database.ref('products/' + id);
+
+	  // Use remove method to remove the product from the database
+  	  productReference.remove();
+
+  	});
+
+  
+
+	//Update an existing product
+	//$('#update-product').on('submit', function(e){
+
+	//	var searchItem = $('#searchId').val();
+		
+	//		
+
+	//}); //end of update an existing product
 
 }); //jquery document ready end brackets

@@ -124,13 +124,17 @@ header{
 		background-color: rgba(66, 75, 84, 1);
 	}
 
-	.prodform p{
+	.prodform p,
+	.itemform p,
+	.search p{
 		margin: auto;
 		width: 50%;
 		padding: 0 0 0.5rem 1rem;
 		}
 
-	.prodform span{
+	.prodform span,
+	.itemform span,
+	.search span{
 		color: rgba(242, 245, 234, 1);
 		width: 20%;
 		padding-right: 3rem;
@@ -144,30 +148,35 @@ header{
 		margin-bottom: 0.25rem;
 	}
 
-	.button{
+	.button,
+	.updateButton,
+	.searchButton{
 		margin: 0.5rem auto;
 		padding: 0.5rem;
 		width: 25%;
 		text-align: center;
 	}
 
-		.button input{
+		.button input,
+		.updateButton input,
+		.searchButton input{
 			background-color: rgba(8, 103, 136, 1);
 			color: rgba(242, 245, 234, 1);
 			border-radius: 4px;
 		}
 
-	.container{
+/*Inventory List styling*/
+.container{
 		width: 100%;
 	}
 
-	#inventory-list h1{
-		text-align: center;
-		padding-bottom: 3rem;
-	}
+#inventory-list h1{
+	text-align: center;
+	padding-bottom: 3rem;
+}
 
 	table{
-		margin: auto;
+		margin: 0 auto;
 		width: 90%;
 		border: 0.5px solid black;
 	}
@@ -182,6 +191,7 @@ header{
 		width: 7rem;
 		text-align: left;
 		color: white;
+		font-size: 12px;
 	}
 
 	tbody{
@@ -194,8 +204,10 @@ header{
 		width: 7rem;
 		text-align: left;
 		color: white;
+		font-size: 12px;
 	}
 
+/*footer styling*/
 footer{
 	height: 8vh;
 	width: 100%;

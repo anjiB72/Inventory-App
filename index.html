@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="./resources/css/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./resources/css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
 </head>
@@ -78,15 +79,43 @@
 
 		<!-- UPDATE ITEM CONTAINER AND FORM -->
 		<div class="updateItem displayNone" id="update">
-			<h2>Update existing product</h2>
+			<h2>Update an existing product</h2>
 			<form id="update-product" class="search">
-				<p>Enter product id: <input type="text" name="search-id"></p>
-				<p><input type="submit" name="search"></p>
+				<p><span>Enter product id: </span><input id="searchId" type="text" name="search-id" placeholder="Enter Product ID"></p>
+				<div class="searchButton"><input type="submit" name="Search" value="Search"></div>
 			</form>
 		</div>
 
-		<div>
-			
+		<div class="existingItem displayNone">
+			<form id="updateItem" data-id="itemId" class="itemform" action="submit">
+				<p><span>Product Category:</span> <select id="prodCat" name="product-category">
+					  <option value="tops">Tops</option>
+					  <option value="socks">Socks</option>
+					  <option value="kids">Kids</option>
+					  <option value="accessories">Accessories</option>
+				</select></p>
+				<p><span>Product id:</span><input id="prodId" type="text" name="product-id"></p>
+				<p><span>Product Name:</span><input id="prodName" type="text" name="product-name"></p>
+				<p><span>Product Description: </span> 
+				<textarea id="description" name="prod-desc" rows="5" cols="20"></textarea></p>
+				<div id="topSizes">
+					<p><span>Number of size small:</span> <input id="small" type="number" name="small-vol"></p>
+					<p><span>Number of size medium:</span> <input id="medium" type="number" name="med-vol"></p>
+					<p><span>Number of size large:</span> <input id="large" type="number" name="lge-vol"></p>
+					<p><span>Number of size Xlarge:</span> <input id="xLarge" type="number" name="xlge-vol"></p>
+				</div>
+				<div class="displayNone" id="sockSizes">
+					<p><span>Number of shoe size 3.5 - 7:</span> <input id="smallSock" type="number" name="smallSock-vol"></p>
+					<p><span>Number of shoe size 8 - 11: </span><input id="mediumSock" type="number" name="medSock-vol"></p>
+				</div> 
+				<div class="displayNone" id="kidSizes">
+					<p><span>Number of age 4 - 6:</span> <input id="smallKid" type="number" name="smallkid-vol"></p>
+					<p><span>Number of age 7 - 9: </span><input id="mediumKid" type="number" name="medkid-vol"></p>
+					<p><span>Number of age 10 - 13: </span><input id="largeKid" type="number" name="lgekid-vol"></p>
+				</div>
+				<p><span>Price: £ </span><input id="price" type="text" name="price"></p>
+				<div class="updateButton"><input type="submit" name="update"></div>
+			</form>
 		</div>
 
 		<!-- INVENTORY CONTAINER AND TABLE -->
@@ -108,6 +137,7 @@
 						<th>Age 7-9</th>
 						<th>Age 10-13</th>				
 						<th>Price (£)</th>
+						<th>Delete product from Inventory</th>
 					</tr>
 				</thead>
 				<tbody id="inventory-table">
@@ -125,7 +155,7 @@
 	<!--Javascript & Jquery files-->
 			<!-- Handlbars template -->
 			<script id="entry-template" type="text/x-handlebars-template">
-		      	<tr data-id="{{itemId}}">
+		      	<tr class="row-data" data-id="{{itemId}}">
 		       		<td>{{productCategory}}</td>
 		       		<td>{{productID}}</td>
 		       		<td>{{productName}}</td>
@@ -139,6 +169,7 @@
 		       		<td>{{volumeMediumKid}}</td>
 		       		<td>{{volumeLargeKid}}</td>
 		       		<td>{{productPrice}}</td>
+		       		<td><i class="fa fa-trash delete"></i></td>
 		       	</tr>
 		    </script>
 
