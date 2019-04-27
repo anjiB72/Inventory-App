@@ -10,6 +10,7 @@
 </head>
 <body>
 
+<!-- FIXED HEADER SECTION WITH LOGO AND TITLE -->
 <header>
 	<div class="header-container" >
 		<div id="logo">
@@ -25,6 +26,7 @@
 	</div>
 </header>
 
+<!-- MAIN HOME PAGE WITH CLICKABLE CONTAINERS -->
 <div class="main-page" id="home">
 	<div class="small-container" id="addNewProd">
 		<h1>Add a new product</h1>
@@ -37,10 +39,13 @@
 	</div>
 </div>
 
+<!--MAIN BODY CONTAINER WITH ADD PRODUCT, VIEW PRODUCT AND INVENTORY FORMS -->
 	<div class="main-container displayNone">
+
+		<!-- ADD PRODUCT CONTAINER AND FORM -->
 		<div class="addItems displayNone" id="add">
 			<h2>ADD A NEW PRODUCT</h2>
-			<form id="add-product" class="prodform">
+			<form id="add-product" class="prodform" action="submit">
 				<p><span>Product Category:</span> <select id="prodCat" name="product-category">
 					  <option value="tops">Tops</option>
 					  <option value="socks">Socks</option>
@@ -71,15 +76,20 @@
 			</form>
 		</div>
 
+		<!-- UPDATE ITEM CONTAINER AND FORM -->
 		<div class="updateItem displayNone" id="update">
 			<h2>Update existing product</h2>
 			<form id="update-product" class="search">
 				<p>Enter product id: <input type="text" name="search-id"></p>
 				<p><input type="submit" name="search"></p>
 			</form>
-
-
 		</div>
+
+		<div>
+			
+		</div>
+
+		<!-- INVENTORY CONTAINER AND TABLE -->
 		<div class="container displayNone" id="inventory-list">
 		<h1>List of Inventory Items</h1>
 			<table>
@@ -92,26 +102,51 @@
 						<th>Medium</th>
 						<th>Large</th>
 						<th>XLarge</th>
-						<th>3.5-7</th>
-						<th>8-11</th>
+						<th>Sock size 3.5-7</th>
+						<th>Sock Size 8-11</th>
 						<th>Age 4-6</th>
 						<th>Age 7-9</th>
 						<th>Age 10-13</th>				
-						<th>Price</th>
+						<th>Price (£)</th>
 					</tr>
 				</thead>
+				<tbody id="inventory-table">
+					<!--Handlebar template populates rows-->		
+				</tbody>
 			</table>
 		</div>
-	</div>
+
+	</div> <!--End of Main Container-->
 
 	<footer>
 		<div>&copy; Angela Boakes, Web Designer.  All rights reserved.</div>
 	</footer>
 
-<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.0.js"
-  integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
-  crossorigin="anonymous"></script>
-<script src="./resources/js/main.js" type="text/javascript"></script>
+	<!--Javascript & Jquery files-->
+			<!-- Handlbars template -->
+			<script id="entry-template" type="text/x-handlebars-template">
+		      	<tr data-id="{{itemId}}">
+		       		<td>{{productCategory}}</td>
+		       		<td>{{productID}}</td>
+		       		<td>{{productName}}</td>
+		       		<td>{{volumeSmall}}</td>
+		       		<td>{{volumeMedium}}</td>
+		       		<td>{{volumeLarge}}</td>
+		       		<td>{{volumeXlarge}}</td>
+		     		<td>{{volumeSmallSock}}</td>
+		       		<td>{{volumeMediumSock}}</td>
+		       		<td>{{volumeSmallKid}}</td>
+		       		<td>{{volumeMediumKid}}</td>
+		       		<td>{{volumeLargeKid}}</td>
+		       		<td>{{productPrice}}</td>
+		       	</tr>
+		    </script>
+
+	<script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.0.js"
+	  integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo="
+	  crossorigin="anonymous"></script>
+	<script src="./resources/js/handlebars-v4.1.2.js" type="text/javascript"></script>  
+	<script src="./resources/js/main.js" type="text/javascript"></script>
 </body>
 </html>

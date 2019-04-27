@@ -161,10 +161,39 @@ header{
 		width: 100%;
 	}
 
+	#inventory-list h1{
+		text-align: center;
+		padding-bottom: 3rem;
+	}
+
 	table{
 		margin: auto;
-		width: 80%;
+		width: 90%;
 		border: 0.5px solid black;
+	}
+
+	thead{
+		background-color: rgba(66, 75, 84, 1);
+	}
+
+	th{
+		border: 0.5px solid white;
+		padding: 0.25rem;
+		width: 7rem;
+		text-align: left;
+		color: white;
+	}
+
+	tbody{
+		background-color: rgba(117, 126, 135, 1);
+	}
+
+	td{
+		border: 0.5px solid white;
+		padding: 0.25rem;
+		width: 7rem;
+		text-align: left;
+		color: white;
 	}
 
 footer{
@@ -187,6 +216,3 @@ footer div{
 	display: none;
 }
 
-.hover{
-	
-}
