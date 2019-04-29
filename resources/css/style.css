@@ -117,35 +117,29 @@ header{
 
 	form{
 		border-radius: 15px;
-		padding: 2rem 0;
+		padding: 2rem;
 		margin: 0 auto 2rem auto;
 		width: 60%;
 		height: auto;
 		background-color: rgba(66, 75, 84, 1);
 	}
 
-	.prodform p,
-	.itemform p,
-	.search p{
-		margin: auto;
-		width: 50%;
-		padding: 0 0 0.5rem 1rem;
-		}
-
-	.prodform span,
-	.itemform span,
-	.search span{
+	label{
 		color: rgba(242, 245, 234, 1);
-		width: 20%;
-		padding-right: 3rem;
+		margin: 0;
+		padding-bottom: 1rem;
 	}
 
 	input,
 	textarea,
 	select {
-		padding: 0.25rem 0;
-		width: 80%;
-		margin-bottom: 0.25rem;
+		width: 100%;
+		padding: 12px 20px;
+		margin: 0.5rem 0 ;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
 	}
 
 	.button,
@@ -165,6 +159,10 @@ header{
 			border-radius: 4px;
 		}
 
+	#prodNotFound{
+		color: red;
+		font-weight: bold;
+	}
 /*Inventory List styling*/
 .container{
 		width: 100%;
@@ -185,7 +183,7 @@ header{
 		background-color: rgba(66, 75, 84, 1);
 	}
 
-	th{
+	th, td{
 		border: 0.5px solid white;
 		padding: 0.25rem;
 		width: 7rem;
@@ -199,12 +197,11 @@ header{
 	}
 
 	td{
-		border: 0.5px solid white;
-		padding: 0.25rem;
-		width: 7rem;
-		text-align: left;
-		color: white;
-		font-size: 12px;
+		vertical-align: middle;
+	}
+
+	td:last-child {
+		text-align: center;
 	}
 
 /*footer styling*/

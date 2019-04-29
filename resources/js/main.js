@@ -11,6 +11,10 @@
 
   var database = firebase.database();
 
+//global variables
+var inventory = [];
+var searchProduct = [];
+
 //function that hides the home page when the small container element is selected
 function hideHome(){
 	var element = document.getElementById('home');
@@ -19,15 +23,15 @@ function hideHome(){
 
 //function to retrieve products from database to display in table
 function getProducts(){
-	//calls the database just once and provides that instance of the results
-	database.ref('products').once('value', function(results){	
+
+		//calls the database just once and provides that instance of the results
+		database.ref('products').once('value', function(results){	
 		
 		//stores all the result values in a variable called allProducts
 		var allProducts = results.val();
-		
-		
+				
 		//set an empty array called inventory
-		var inventory = [];
+		inventory = [];
 
 		//loops through all items in the allProducts variable
 		for (var item in allProducts){
@@ -62,6 +66,70 @@ function getProducts(){
 	}); //End of database.ref('products') once results function
 
 }; //End of getProducts Function
+
+function updateProducts(){
+
+		var searchItem = $('#searchId').val();  //search for user input
+		searchItem = searchItem.toLowerCase();  //change to lowercase
+		//console.log(searchItem); 
+
+		//calls the database just once and provides that instance of the results
+		database.ref('products').once('value', function(results){	
+		
+		//stores all the result values in a variable called allProducts
+		var allProducts = results.val();
+		//console.log(allProducts);
+		
+		//set an empty array called inventory
+		searchProduct = [];
+
+		//loops through all items in the allProducts variable
+		for (var item in allProducts){
+
+			var prodId = allProducts[item].productId;  //locates product id for each item
+			prodId = prodId.toLowerCase(); // changes it to lowercase
+			//console.log(prodId);
+
+			if(searchItem === prodId){   //if searchItem matches the product id then get all the product info
+
+			var context = {
+		        updateCategory: allProducts[item].productCategory,
+		        updateProdId: allProducts[item].productId,
+		        updateProdName: allProducts[item].productName,
+		        updateDescription: allProducts[item].productDescription,
+		        updateSmall: allProducts[item].volumeSmall,
+		        updateMedium: allProducts[item].volumeMedium,
+		        updateLarge: allProducts[item].volumeLarge,
+		        updateXLarge: allProducts[item].volumeXlarge,
+		        updateSmallSock: allProducts[item].volumeSmallSock,
+		        updateMediumSock: allProducts[item].volumeMediumSock,
+		        updateSmallKid: allProducts[item].volumeSmallKid,
+		        updateMediumKid: allProducts[item].volumeMediumKid,
+		        updateLargeKid: allProducts[item].volumeLargeKid,
+		        updatePrice: allProducts[item].productPrice,
+		        itemId: item
+		      };
+
+		     //console.log(context);
+
+		      var source = $("#updateProductForm").html();  
+		      var template = Handlebars.compile(source);
+		      var searchProductItem = template(context);
+		      searchProduct.push(searchProductItem); 
+
+		      //console.log(inventory);
+
+    		// append the product form to the existing item div and remove the displayNone class
+	    	      $('.existingItem').append(searchProduct).removeClass('displayNone');
+	   	    	
+	    		};//end of if statement
+	    	};//end of for loop 
+	    
+			if(searchProduct === ""){
+	    		$('#prodNotFound').removeClass('displayNone');
+	    	}
+	});
+}; //end of updateProducts
 
 //jquery document ready
 $(document).ready(function(){
@@ -112,19 +180,20 @@ $(document).ready(function(){
 
 		//set product category value to a variable
 		var productCat = $('#prodCat').val();
+		
 
 		//if else condition to display size inputs dependent on product category selected
-		if (productCat === "socks") {
-			$('#sockSizes').removeClass("displayNone");
-			$('#topSizes , #kidSizes').addClass('displayNone');
-		} else if (productCat === "kids") {
-			$('#kidSizes').removeClass("displayNone");
-			$('#topSizes , #sockSizes').addClass('displayNone');
-		} else if (productCat === "tops") {
-			$('#topSizes').removeClass('displayNone');
-			$('#kidSizes , #sockSizes').addClass('displayNone');
+		if (productCat === "Socks") {
+			$('.sockSizes').removeClass("displayNone");
+			$('.topSizes , .kidSizes').addClass('displayNone');
+		} else if (productCat === "Kids") {
+			$('.kidSizes').removeClass("displayNone");
+			$('.topSizes , .sockSizes').addClass('displayNone');
+		} else if (productCat === "Tops") {
+			$('.topSizes').removeClass('displayNone');
+			$('.kidSizes , .sockSizes').addClass('displayNone');
 		} else {
-			$('#topSizes , #sockSizes , #kidSizes').addClass('displayNone');
+			$('.topSizes , .sockSizes , .kidSizes').addClass('displayNone');
 		};
 	});
 
@@ -205,15 +274,12 @@ $(document).ready(function(){
 
   	});
 
-  
-
-	//Update an existing product
-	//$('#update-product').on('submit', function(e){
-
-	//	var searchItem = $('#searchId').val();
+  	//Update an existing product
+	$('#update-product').on('submit', function(e){
+		e.preventDefault();
+		searchProduct = [];
+		updateProducts(); //call updateProducts function
 		
-	//		
-
-	//}); //end of update an existing product
+	}); //end of update an existing product
 
 }); //jquery document ready end brackets

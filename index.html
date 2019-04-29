@@ -47,32 +47,33 @@
 		<div class="addItems displayNone" id="add">
 			<h2>ADD A NEW PRODUCT</h2>
 			<form id="add-product" class="prodform" action="submit">
-				<p><span>Product Category:</span> <select id="prodCat" name="product-category">
-					  <option value="tops">Tops</option>
-					  <option value="socks">Socks</option>
-					  <option value="kids">Kids</option>
-					  <option value="accessories">Accessories</option>
-				</select></p>
-				<p><span>Product id:</span><input id="prodId" type="text" name="product-id"></p>
-				<p><span>Product Name:</span><input id="prodName" type="text" name="product-name"></p>
-				<p><span>Product Description: </span> 
-				<textarea id="description" name="prod-desc" rows="5" cols="20"></textarea></p>
-				<div id="topSizes">
-					<p><span>Number of size small:</span> <input id="small" type="number" name="small-vol"></p>
-					<p><span>Number of size medium:</span> <input id="medium" type="number" name="med-vol"></p>
-					<p><span>Number of size large:</span> <input id="large" type="number" name="lge-vol"></p>
-					<p><span>Number of size Xlarge:</span> <input id="xLarge" type="number" name="xlge-vol"></p>
+				<label for="prodCat">Product Category:</label>
+					<select id="prodCat" name="product-category">
+					  <option value="Tops">Tops</option>
+					  <option value="Socks">Socks</option>
+					  <option value="Kids">Kids</option>
+					  <option value="Accessories">Accessories</option>
+					</select>
+				<label for="prodId">Product id:</label><input id="prodId" type="text" name="product-id">
+				<label for="prodName">Product Name:</label><input id="prodName" type="text" name="product-name">
+				<label for="description">Product Description: </label> 
+				<textarea id="description" name="prod-desc" rows="5" cols="20"></textarea>
+				<div class="topSizes">
+					<label for="small">Number of size small:</label><input id="small" type="number" name="small-vol">
+					<label for="medium">Number of size medium:</label> <input id="medium" type="number" name="med-vol">
+					<label for="large">Number of size large:</label> <input id="large" type="number" name="lge-vol">
+					<label for="xLarge">Number of size Xlarge:</label> <input id="xLarge" type="number" name="xlge-vol">
 				</div>
-				<div class="displayNone" id="sockSizes">
-					<p><span>Number of shoe size 3.5 - 7:</span> <input id="smallSock" type="number" name="smallSock-vol"></p>
-					<p><span>Number of shoe size 8 - 11: </span><input id="mediumSock" type="number" name="medSock-vol"></p>
+				<div class="displayNone sockSizes" id="sockSizes">
+					<label for="smallSock">Number of shoe size 3.5 - 7:</label><input id="smallSock" type="number" name="smallSock-vol">
+					<label for="mediumSock">Number of shoe size 8 - 11: </label><input id="mediumSock" type="number" name="medSock-vol">
 				</div> 
-				<div class="displayNone" id="kidSizes">
-					<p><span>Number of age 4 - 6:</span> <input id="smallKid" type="number" name="smallkid-vol"></p>
-					<p><span>Number of age 7 - 9: </span><input id="mediumKid" type="number" name="medkid-vol"></p>
-					<p><span>Number of age 10 - 13: </span><input id="largeKid" type="number" name="lgekid-vol"></p>
+				<div class="displayNone kidSizes" id="kidSizes">
+					<label for="smallKid">Number of age 4 - 6:</label> <input id="smallKid" type="number" name="smallkid-vol">
+					<label for="mediumKid">Number of age 7 - 9: </label><input id="mediumKid" type="number" name="medkid-vol">
+					<label for="largeKid">Number of age 10 - 13: </label><input id="largeKid" type="number" name="lgekid-vol">
 				</div>
-				<p><span>Price: £ </span><input id="price" type="text" name="price"></p>
+				<label for="price">Price: £ </label><input id="price" type="text" name="price">
 				<div class="button"><input type="submit" name="submit"></div>
 			</form>
 		</div>
@@ -83,39 +84,12 @@
 			<form id="update-product" class="search">
 				<p><span>Enter product id: </span><input id="searchId" type="text" name="search-id" placeholder="Enter Product ID"></p>
 				<div class="searchButton"><input type="submit" name="Search" value="Search"></div>
+				<p class="displayNone" id="prodNotFound">Product not found</p>
 			</form>
 		</div>
 
 		<div class="existingItem displayNone">
-			<form id="updateItem" data-id="itemId" class="itemform" action="submit">
-				<p><span>Product Category:</span> <select id="prodCat" name="product-category">
-					  <option value="tops">Tops</option>
-					  <option value="socks">Socks</option>
-					  <option value="kids">Kids</option>
-					  <option value="accessories">Accessories</option>
-				</select></p>
-				<p><span>Product id:</span><input id="prodId" type="text" name="product-id"></p>
-				<p><span>Product Name:</span><input id="prodName" type="text" name="product-name"></p>
-				<p><span>Product Description: </span> 
-				<textarea id="description" name="prod-desc" rows="5" cols="20"></textarea></p>
-				<div id="topSizes">
-					<p><span>Number of size small:</span> <input id="small" type="number" name="small-vol"></p>
-					<p><span>Number of size medium:</span> <input id="medium" type="number" name="med-vol"></p>
-					<p><span>Number of size large:</span> <input id="large" type="number" name="lge-vol"></p>
-					<p><span>Number of size Xlarge:</span> <input id="xLarge" type="number" name="xlge-vol"></p>
-				</div>
-				<div class="displayNone" id="sockSizes">
-					<p><span>Number of shoe size 3.5 - 7:</span> <input id="smallSock" type="number" name="smallSock-vol"></p>
-					<p><span>Number of shoe size 8 - 11: </span><input id="mediumSock" type="number" name="medSock-vol"></p>
-				</div> 
-				<div class="displayNone" id="kidSizes">
-					<p><span>Number of age 4 - 6:</span> <input id="smallKid" type="number" name="smallkid-vol"></p>
-					<p><span>Number of age 7 - 9: </span><input id="mediumKid" type="number" name="medkid-vol"></p>
-					<p><span>Number of age 10 - 13: </span><input id="largeKid" type="number" name="lgekid-vol"></p>
-				</div>
-				<p><span>Price: £ </span><input id="price" type="text" name="price"></p>
-				<div class="updateButton"><input type="submit" name="update"></div>
-			</form>
+			<!--Handlebar template to populate with form containing product information-->		
 		</div>
 
 		<!-- INVENTORY CONTAINER AND TABLE -->
@@ -141,7 +115,7 @@
 					</tr>
 				</thead>
 				<tbody id="inventory-table">
-					<!--Handlebar template populates rows-->		
+					<!--Handlebar template to populate table rows with data-->		
 				</tbody>
 			</table>
 		</div>
@@ -153,7 +127,42 @@
 	</footer>
 
 	<!--Javascript & Jquery files-->
-			<!-- Handlbars template -->
+
+			<!-- Handlebars template for update product form -->
+			<script id="updateProductForm" type="text/x-handlebars-template">
+				<form id="updateItem" data-id="itemId" class="itemform" action="submit">
+					<label for="updateCat">Product Category:</label>
+						<select id="updateCat" name="product-category">
+						  <option value={{updateCategory}}>{{updateCategory}}</option>
+						  <option value="Tops">Tops</option>
+						  <option value="Socks">Socks</option>
+						  <option value="Kids">Kids</option>
+						  <option value="Accessories">Accessories</option>
+						</select>
+					<label for="updateId">Product id:</label><input id="updateId" type="text" size="35" name="product-id" value={{updateProdId}}>
+					<label for="updateProdName">Product Name:</label><input id="updateProdName" size="40" type="text" name="product-name" value={{updateProdName}}>
+					<label for="updateDescription">Product Description: </label> 
+					<textarea id="updateDescription" name="prod-desc" rows="5" cols="20">{{updateDescription}}</textarea>
+					<div class="topSizes">
+						<label for="updateSmall">Number of size small:</label><input id="updateSmall" type="number" name="small-vol" value={{updateSmall}}>
+						<label for="updateMedium">Number of size medium:</label> <input id="updateMedium" type="number" name="med-vol" value={{updateMedium}}>
+						<label for="updateLarge">Number of size large:</label> <input id="updateLarge" type="number" name="lge-vol" value={{updateLarge}}>
+						<label for="updateXLarge">Number of size Xlarge:</label> <input id="updateXLarge" type="number" name="xlge-vol" value={{updateXLarge}}>
+					</div>
+					<div class="sockSizes">
+						<label for="updateSmallSock">Number of shoe size 3.5 - 7:</label><input id="updateSmallSock" type="number" name="smallSock-vol" value={{updateSmallSock}}>
+						<label for="updateMediumSock">Number of shoe size 8 - 11: </label><input id="updateMediumSock" type="number" name="medSock-vol" value={{updateMediumSock}}>
+					</div> 
+					<div class="kidSizes">
+						<label for="updateSmallKid">Number of age 4 - 6:</label> <input id="updateSmallKid" type="number" name="smallkid-vol" value={{updateSmallKid}}>
+						<label for="updateMediumKid">Number of age 7 - 9: </label><input id="updateMediumKid" type="number" name="medkid-vol" value={{updateMediumKid}}>
+						<label for="updateLargeKid">Number of age 10 - 13: </label><input id="updateLargeKid" type="number" name="lgekid-vol" value={{updateLargeKid}}>
+					</div>
+					<label for="updatePrice">Price: £ </label><input id="updatePrice" type="text" name="price" value={{updatePrice}}>
+				</form>
+			</script>
+
+			<!-- Handlbars template for inventory list table rows and data-->
 			<script id="entry-template" type="text/x-handlebars-template">
 		      	<tr class="row-data" data-id="{{itemId}}">
 		       		<td>{{productCategory}}</td>
