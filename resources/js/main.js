@@ -11,6 +11,9 @@
 
   var database = firebase.database();
 
+//jquery document ready
+$(document).ready(function(){
+	
 //global variables
 var inventory = [];
 var searchProduct = [];
@@ -61,7 +64,7 @@ function getProducts(){
 
 function updateToDatabase(){
 	//store the input values into variables
-		var itemId = $('#updateItem').attr('data-id').val();
+		var itemId = $('#updateItem').attr('data-id');
 		var prodCat = $('#updateCat').val();
 		var prodId = $('#updateId').val();
 		var prodName = $("#updateProdName").val();
@@ -79,9 +82,7 @@ function updateToDatabase(){
 
 		console.log(itemId);
 
-		var productReference = database.ref('products/' + itemId);
-
-		productReference.update({
+		database.ref('products/' + itemId).set({
 			productCategory: prodCat,
 	    	productId: prodId,
 	    	productName: prodName,
@@ -96,11 +97,11 @@ function updateToDatabase(){
 	    	volumeMediumKid: mediumKid,
 	    	volumeLargeKid: largeKid,
 	    	productPrice: price
-	  	}); // product details.update method end brackets	  			
+		});
+					
 }; //End of function
 
-//jquery document ready
-$(document).ready(function(){
+
 
 //MAIN PAGE SELECTION
 	//Change background colour when mouse enters or leaves the small containers on screen
@@ -284,7 +285,7 @@ $(document).ready(function(){
 			        updatePrice: price,
 			        itemId: id
 		      	};
-
+		      	console.log(context);
 		       	var source = $("#updateProductForm").html();  
 		      	var template = Handlebars.compile(source);
 		    	var searchProductItem = template(context);
@@ -298,10 +299,8 @@ $(document).ready(function(){
 	   		 }); //Ends on click update retrieve product function
 
 	//update amended item into database
-		$('#updateItem').on('submit', function (e){
-			//prevents the default action
-			e.preventDefault();
-			 //calls the updateToDatabase function
+		$('#updateItem').on('submit', function(){
+			//calls the updateToDatabase function
 	     	updateToDatabase();
 
 		}); // end of update to database
