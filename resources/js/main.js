@@ -23,19 +23,12 @@ function hideHome(){
 
 //function to retrieve products from database to display in table
 function getProducts(){
-
 		//calls the database just once and provides that instance of the results
 		database.ref('products').once('value', function(results){	
-		
 		//stores all the result values in a variable called allProducts
 		var allProducts = results.val();
-				
-		//set an empty array called inventory
-		inventory = [];
-
 		//loops through all items in the allProducts variable
 		for (var item in allProducts){
-			
 			var context = {
 		        productCategory: allProducts[item].productCategory,
 		        productID: allProducts[item].productId,
@@ -52,7 +45,7 @@ function getProducts(){
 		        productPrice: allProducts[item].productPrice,
 		        itemId: item
 		      };
-
+		  //populates the handlebar template for each item
 	      var source = $("#entry-template").html();
 	      var template = Handlebars.compile(source);
 	      var inventoryItem = template(context);
@@ -64,72 +57,47 @@ function getProducts(){
 	      $('#inventory-table').append(inventory[i]);
 	    };
 	}); //End of database.ref('products') once results function
-
 }; //End of getProducts Function
 
-function updateProducts(){
+function updateToDatabase(){
+	//store the input values into variables
+		var itemId = $('#updateItem').attr('data-id').val();
+		var prodCat = $('#updateCat').val();
+		var prodId = $('#updateId').val();
+		var prodName = $("#updateProdName").val();
+		var prodDesc = $('#updateDescription').val();
+		var small = $('#updateSmall').val();
+		var medium = $('#updateMedium').val();
+		var large = $('#updateLarge').val();
+		var xLarge = $('#updateXLarge').val();
+		var smallSock = $('#updateSmallSock').val();
+		var mediumSock = $('#updateMediumSock').val();
+		var smallKid = $('#updateSmallKid').val();
+		var mediumKid = $('#updateMediumKid').val();
+		var largeKid = $('#updateLargeKid').val();
+		var price = $('#updatePrice').val();
 
-		var searchItem = $('#searchId').val();  //search for user input
-		searchItem = searchItem.toLowerCase();  //change to lowercase
-		//console.log(searchItem); 
+		console.log(itemId);
 
-		//calls the database just once and provides that instance of the results
-		database.ref('products').once('value', function(results){	
-		
-		//stores all the result values in a variable called allProducts
-		var allProducts = results.val();
-		//console.log(allProducts);
-		
-		//set an empty array called inventory
-		searchProduct = [];
+		var productReference = database.ref('products/' + itemId);
 
-		//loops through all items in the allProducts variable
-		for (var item in allProducts){
-
-			var prodId = allProducts[item].productId;  //locates product id for each item
-			prodId = prodId.toLowerCase(); // changes it to lowercase
-			//console.log(prodId);
-
-			if(searchItem === prodId){   //if searchItem matches the product id then get all the product info
-
-			var context = {
-		        updateCategory: allProducts[item].productCategory,
-		        updateProdId: allProducts[item].productId,
-		        updateProdName: allProducts[item].productName,
-		        updateDescription: allProducts[item].productDescription,
-		        updateSmall: allProducts[item].volumeSmall,
-		        updateMedium: allProducts[item].volumeMedium,
-		        updateLarge: allProducts[item].volumeLarge,
-		        updateXLarge: allProducts[item].volumeXlarge,
-		        updateSmallSock: allProducts[item].volumeSmallSock,
-		        updateMediumSock: allProducts[item].volumeMediumSock,
-		        updateSmallKid: allProducts[item].volumeSmallKid,
-		        updateMediumKid: allProducts[item].volumeMediumKid,
-		        updateLargeKid: allProducts[item].volumeLargeKid,
-		        updatePrice: allProducts[item].productPrice,
-		        itemId: item
-		      };
-
-		     //console.log(context);
-
-		      var source = $("#updateProductForm").html();  
-		      var template = Handlebars.compile(source);
-		      var searchProductItem = template(context);
-		      searchProduct.push(searchProductItem); 
-
-		      //console.log(inventory);
-
-    		// append the product form to the existing item div and remove the displayNone class
-	    	      $('.existingItem').append(searchProduct).removeClass('displayNone');
-	   	    	
-	    		};//end of if statement
-	    	};//end of for loop 
-	    
-			if(searchProduct === ""){
-	    		$('#prodNotFound').removeClass('displayNone');
-	    	}
-	});
-}; //end of updateProducts
+		productReference.update({
+			productCategory: prodCat,
+	    	productId: prodId,
+	    	productName: prodName,
+	    	productDescription: prodDesc,
+	    	volumeSmall: small,
+	    	volumeMedium: medium,
+	    	volumeLarge: large,
+	    	volumeXlarge: xLarge,
+	    	volumeSmallSock: smallSock,
+	    	volumeMediumSock: mediumSock,
+	    	volumeSmallKid: smallKid,
+	    	volumeMediumKid: mediumKid,
+	    	volumeLargeKid: largeKid,
+	    	productPrice: price
+	  	}); // product details.update method end brackets	  			
+}; //End of function
 
 //jquery document ready
 $(document).ready(function(){
@@ -181,7 +149,6 @@ $(document).ready(function(){
 		//set product category value to a variable
 		var productCat = $('#prodCat').val();
 		
-
 		//if else condition to display size inputs dependent on product category selected
 		if (productCat === "Socks") {
 			$('.sockSizes').removeClass("displayNone");
@@ -255,31 +222,88 @@ $(document).ready(function(){
   		}); // product details.push method end brackets
 	});	//add product submit function end brackets	
 
+
+//DELETE PRODUCT
 	//Click event to delete a product from database and from 
 	$('#inventory-table').on('click', '.delete', function (e) {
-
 	  // Get the ID for the product we want to update
 	  var id = $(e.target).parents('tr').attr('data-id');
-
 	  //removes row from table
 	  $(e.target).parents('tr').remove();
-
 	  //console.log(id);
 
 	  // find product whose objectId is equal to the id we're searching with
 	  var productReference = database.ref('products/' + id);
-
 	  // Use remove method to remove the product from the database
   	  productReference.remove();
+  	});  //end of delete product
 
-  	});
+//UPDATE PRODUCT
 
-  	//Update an existing product
-	$('#update-product').on('submit', function(e){
-		e.preventDefault();
-		searchProduct = [];
-		updateProducts(); //call updateProducts function
-		
-	}); //end of update an existing product
+	//Retrieve product data from selected item on inventory table
+	//on clicking the update icon in the table
+	$('#inventory-table').on('click', '.update', function (e) {
 
+	  // Get the ID for the product we want to update
+	  var id = $(e.target).parents('tr').attr('data-id');
+	  console.log(id);
+
+	  //calls the database just once and provides that instance of the results
+	  var ref = firebase.database().ref("products/" + id);
+			ref.once("value")
+			  .then(function(snapshot) {
+			    var category = snapshot.child("productCategory").val(); 
+			    var prodId = snapshot.child("productId").val();
+			    var name = snapshot.child("productName").val(); 
+			    var desc = snapshot.child("productDescription").val();
+			    var volSm = snapshot.child("volumeSmall").val(); 
+			    var volMed = snapshot.child("volumeMedium").val(); 
+			    var volLg = snapshot.child("volumeLarge").val();
+			    var volXlg = snapshot.child("volumeXLarge").val();
+			    var volSmSk = snapshot.child("volumeSmallSock").val();
+			    var medSk = snapshot.child("volumeMediumSock").val();
+			    var smKid = snapshot.child("volumeSmallKid").val();
+			    var medKid = snapshot.child("volumeMediumKid").val();
+			    var lgKid = snapshot.child("volumeLargeKid").val();
+			    var price = snapshot.child("productPrice").val();
+
+			    var context = {
+			        updateCategory: category,
+			        updateProdId: prodId,
+			       	updateProdName: name,
+			       	updateDescription: desc,
+			        updateSmall: volSm,
+			        updateMedium: volMed,
+			        updateLarge: volLg,
+			        updateXlarge: volXlg,
+			        updateSmallSock: volSmSk,
+			        updateMediumSock: medSk,
+			        updateSmallKid: smKid,
+			        updateMediumKid: medKid,
+			        updateLargeKid: lgKid,
+			        updatePrice: price,
+			        itemId: id
+		      	};
+
+		       	var source = $("#updateProductForm").html();  
+		      	var template = Handlebars.compile(source);
+		    	var searchProductItem = template(context);
+		   		searchProduct.push(searchProductItem); 
+
+		      // append the product form to the existing item div and remove the displayNone class
+	    	    $('.existingItem').append(searchProduct).removeClass('displayNone')
+	    	    $('#inventory-list').addClass('displayNone');
+	  		
+				}); //ends snapshot function					
+	   		 }); //Ends on click update retrieve product function
+
+	//update amended item into database
+		$('#updateItem').on('submit', function (e){
+			//prevents the default action
+			e.preventDefault();
+			 //calls the updateToDatabase function
+	     	updateToDatabase();
+
+		}); // end of update to database
+  	
 }); //jquery document ready end brackets

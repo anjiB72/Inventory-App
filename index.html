@@ -32,11 +32,12 @@
 	<div class="small-container" id="addNewProd">
 		<h1>Add a new product</h1>
 	</div>
+	<!--
 	<div class="small-container" id="updateProduct">
 		<h1>Update an existing product</h1>
-	</div>
+	</div> -->
 	<div class="small-container" id="viewInventory">
-		<h1>View your inventory</h1>
+		<h1>View & update your inventory</h1>
 	</div>
 </div>
 
@@ -79,6 +80,7 @@
 		</div>
 
 		<!-- UPDATE ITEM CONTAINER AND FORM -->
+		<!--
 		<div class="updateItem displayNone" id="update">
 			<h2>Update an existing product</h2>
 			<form id="update-product" class="search">
@@ -86,7 +88,7 @@
 				<div class="searchButton"><input type="submit" name="Search" value="Search"></div>
 				<p class="displayNone" id="prodNotFound">Product not found</p>
 			</form>
-		</div>
+		</div> -->
 
 		<div class="existingItem displayNone">
 			<!--Handlebar template to populate with form containing product information-->		
@@ -111,7 +113,8 @@
 						<th>Age 7-9</th>
 						<th>Age 10-13</th>				
 						<th>Price (£)</th>
-						<th>Delete product from Inventory</th>
+						<th>Delete product</th>
+						<th>Update product</th>
 					</tr>
 				</thead>
 				<tbody id="inventory-table">
@@ -140,7 +143,7 @@
 						  <option value="Accessories">Accessories</option>
 						</select>
 					<label for="updateId">Product id:</label><input id="updateId" type="text" size="35" name="product-id" value={{updateProdId}}>
-					<label for="updateProdName">Product Name:</label><input id="updateProdName" size="40" type="text" name="product-name" value={{updateProdName}}>
+					<label for="updateProdName">Product Name:</label><textarea id="updateProdName" name="product-name" rows="1" cols="100">{{updateProdName}}</textarea>
 					<label for="updateDescription">Product Description: </label> 
 					<textarea id="updateDescription" name="prod-desc" rows="5" cols="20">{{updateDescription}}</textarea>
 					<div class="topSizes">
@@ -159,6 +162,7 @@
 						<label for="updateLargeKid">Number of age 10 - 13: </label><input id="updateLargeKid" type="number" name="lgekid-vol" value={{updateLargeKid}}>
 					</div>
 					<label for="updatePrice">Price: £ </label><input id="updatePrice" type="text" name="price" value={{updatePrice}}>
+					<div class="updateButton"><input type="submit" name="update" value="Update"></div>
 				</form>
 			</script>
 
@@ -179,6 +183,7 @@
 		       		<td>{{volumeLargeKid}}</td>
 		       		<td>{{productPrice}}</td>
 		       		<td><i class="fa fa-trash delete"></i></td>
+		       		<td><i class="fa fa-pencil-square-o update"></i></td>
 		       	</tr>
 		    </script>
 
