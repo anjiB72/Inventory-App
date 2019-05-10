@@ -95,6 +95,7 @@ header{
 	.small-container h1{
 		margin: auto 0;
 		color: rgba(242, 245, 234, 1);
+		text-align: center;
 		align-self: center;
 	}
 
@@ -166,6 +167,7 @@ header{
 /*Inventory List styling*/
 .container{
 		width: 100%;
+		padding-bottom: 3rem;
 	}
 
 #inventory-list h1{
