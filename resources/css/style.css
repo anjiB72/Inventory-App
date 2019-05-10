@@ -200,8 +200,17 @@ header{
 		vertical-align: middle;
 	}
 
-	td:last-child {
+	td:last-child,
+	td:nth-last-child(2) {
 		text-align: center;
+	}
+
+	td:nth-child(3){
+		width: 10rem;
+	}
+
+	tbody tr{
+		height: 2.5rem;
 	}
 
 /*footer styling*/
