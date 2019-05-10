@@ -82,23 +82,23 @@ function updateToDatabase(){
 		var largeKid = $('#updateLargeKid').val();
 		var price = $('#updatePrice').val();
 
-		console.log(id);
+		//console.log(id);
 
 		database.ref('products/' + id).set({
 			productCategory: prodCat,
-	    	productId: prodId,
-	    	productName: prodName,
-	    	productDescription: prodDesc,
-	    	volumeSmall: small,
-	    	volumeMedium: medium,
-	    	volumeLarge: large,
-	    	volumeXlarge: xLarge,
-	    	volumeSmallSock: smallSock,
-	    	volumeMediumSock: mediumSock,
-	    	volumeSmallKid: smallKid,
-	    	volumeMediumKid: mediumKid,
-	    	volumeLargeKid: largeKid,
-	    	productPrice: price
+	    		productId: prodId,
+	    		productName: prodName,
+	    		productDescription: prodDesc,
+	    		volumeSmall: small,
+	    		volumeMedium: medium,
+	    		volumeLarge: large,
+	    		volumeXlarge: xLarge,
+	    		volumeSmallSock: smallSock,
+			volumeMediumSock: mediumSock,
+			volumeSmallKid: smallKid,
+			volumeMediumKid: mediumKid,
+			volumeLargeKid: largeKid,
+			productPrice: price
 		});
 					
 }; //End of function
@@ -208,26 +208,26 @@ function updateToDatabase(){
 
   		// use the set method to save data to products
   		productDetails.push({
-  			productCategory: prodCat,
-    		productId: prodId,
-    		productName: prodName,
-    		productDescription: prodDesc,
-    		volumeSmall: small,
-    		volumeMedium: medium,
-    		volumeLarge: large,
-    		volumeXlarge: xLarge,
-    		volumeSmallSock: smallSock,
-    		volumeMediumSock: mediumSock,
-    		volumeSmallKid: smallKid,
-    		volumeMediumKid: mediumKid,
-    		volumeLargeKid: largeKid,
-    		productPrice: price
+			productCategory: prodCat,
+			productId: prodId,
+			productName: prodName,
+			productDescription: prodDesc,
+			volumeSmall: small,
+			volumeMedium: medium,
+			volumeLarge: large,
+			volumeXlarge: xLarge,
+			volumeSmallSock: smallSock,
+			volumeMediumSock: mediumSock,
+			volumeSmallKid: smallKid,
+			volumeMediumKid: mediumKid,
+			volumeLargeKid: largeKid,
+			productPrice: price
   		}); // product details.push method end brackets
 	});	//add product submit function end brackets	
 
 
 //DELETE PRODUCT
-	//Click event to delete a product from database and from 
+	//Click event to delete a product from database and from table
 	$('#inventory-table').on('click', '.delete', function (e) {
 	  // Get the ID for the product we want to update
 	  id = $(e.target).parents('tr').attr('data-id');
@@ -242,7 +242,6 @@ function updateToDatabase(){
   	});  //end of delete product
 
 //UPDATE PRODUCT
-
 	//Retrieve product data from selected item on inventory table
 	//on clicking the update icon in the table
 	$('#inventory-table').on('click', '.update', function (e) {
@@ -304,17 +303,21 @@ function updateToDatabase(){
 		$('.existingItem').on('submit', '.updateItem', function(e){
 			e.preventDefault();
 			//calls the updateToDatabase function
-	     	updateToDatabase();
-	     	$('.existingItem').addClass('displayNone');
-	     	$('#inventory-table').empty();
-	     	inventory = [];
-	     	context = {};
-	     	inventoryItem = "";
-	     	//console.log(inventory);
-	     	//console.log(context);
-	     	//console.log(inventoryItem);
-	     	$('#inventory-list').removeClass('displayNone');
-	       	getProducts();
+			updateToDatabase();
+			//once database updated hide the existing item form
+			$('.existingItem').addClass('displayNone');
+			//clear down the current inventory table
+			$('#inventory-table').empty();
+			inventory = [];
+			context = {};
+			inventoryItem = "";
+			//console.log(inventory);
+			//console.log(context);
+			//console.log(inventoryItem);
+			//display inventory table
+			$('#inventory-list').removeClass('displayNone');
+			//populate table with updated database products
+			getProducts();
 		}); // end of update to database
   	
 }); //jquery document ready end brackets
