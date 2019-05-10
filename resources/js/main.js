@@ -16,7 +16,10 @@ $(document).ready(function(){
 	
 //global variables
 var inventory = [];
+var inventoryItem;
 var searchProduct = [];
+var id;
+var context = {};
 
 //function that hides the home page when the small container element is selected
 function hideHome(){
@@ -32,7 +35,7 @@ function getProducts(){
 		var allProducts = results.val();
 		//loops through all items in the allProducts variable
 		for (var item in allProducts){
-			var context = {
+			context = {
 		        productCategory: allProducts[item].productCategory,
 		        productID: allProducts[item].productId,
 		        productName: allProducts[item].productName,
@@ -51,7 +54,7 @@ function getProducts(){
 		  //populates the handlebar template for each item
 	      var source = $("#entry-template").html();
 	      var template = Handlebars.compile(source);
-	      var inventoryItem = template(context);
+	      inventoryItem = template(context);
 	      inventory.push(inventoryItem);
 	    };
 
@@ -64,7 +67,6 @@ function getProducts(){
 
 function updateToDatabase(){
 	//store the input values into variables
-		var itemId = $('#updateItem').attr('data-id');
 		var prodCat = $('#updateCat').val();
 		var prodId = $('#updateId').val();
 		var prodName = $("#updateProdName").val();
@@ -80,9 +82,9 @@ function updateToDatabase(){
 		var largeKid = $('#updateLargeKid').val();
 		var price = $('#updatePrice').val();
 
-		console.log(itemId);
+		console.log(id);
 
-		database.ref('products/' + itemId).set({
+		database.ref('products/' + id).set({
 			productCategory: prodCat,
 	    	productId: prodId,
 	    	productName: prodName,
@@ -228,7 +230,7 @@ function updateToDatabase(){
 	//Click event to delete a product from database and from 
 	$('#inventory-table').on('click', '.delete', function (e) {
 	  // Get the ID for the product we want to update
-	  var id = $(e.target).parents('tr').attr('data-id');
+	  id = $(e.target).parents('tr').attr('data-id');
 	  //removes row from table
 	  $(e.target).parents('tr').remove();
 	  //console.log(id);
@@ -246,7 +248,7 @@ function updateToDatabase(){
 	$('#inventory-table').on('click', '.update', function (e) {
 
 	  // Get the ID for the product we want to update
-	  var id = $(e.target).parents('tr').attr('data-id');
+	  id = $(e.target).parents('tr').data('id');
 	  console.log(id);
 
 	  //calls the database just once and provides that instance of the results
@@ -268,7 +270,7 @@ function updateToDatabase(){
 			    var lgKid = snapshot.child("volumeLargeKid").val();
 			    var price = snapshot.child("productPrice").val();
 
-			    var context = {
+			    context = {
 			        updateCategory: category,
 			        updateProdId: prodId,
 			       	updateProdName: name,
@@ -298,11 +300,21 @@ function updateToDatabase(){
 				}); //ends snapshot function					
 	   		 }); //Ends on click update retrieve product function
 
-	//update amended item into database
-		$('#updateItem').on('submit', function(){
+	//update amended item into database and display changes in inventory table
+		$('.existingItem').on('submit', '.updateItem', function(e){
+			e.preventDefault();
 			//calls the updateToDatabase function
 	     	updateToDatabase();
-
+	     	$('.existingItem').addClass('displayNone');
+	     	$('#inventory-table').empty();
+	     	inventory = [];
+	     	context = {};
+	     	inventoryItem = "";
+	     	//console.log(inventory);
+	     	//console.log(context);
+	     	//console.log(inventoryItem);
+	     	$('#inventory-list').removeClass('displayNone');
+	       	getProducts();
 		}); // end of update to database
   	
 }); //jquery document ready end brackets
