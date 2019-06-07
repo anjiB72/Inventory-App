@@ -305,8 +305,9 @@ function updateToDatabase(){
 			//calls the updateToDatabase function
 			updateToDatabase();
 			//once database updated hide the existing item form page and remove searchProduct form
-			$('.existingItem').remove(searchProduct).addClass('displayNone');
-
+			$('.existingItem').empty().addClass('displayNone');
+			searchProduct = [];
+			id;
 			//clear down the current inventory table
 			$('#inventory-table').empty();
 			inventory = [];
